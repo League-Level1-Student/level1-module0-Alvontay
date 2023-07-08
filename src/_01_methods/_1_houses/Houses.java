@@ -11,6 +11,7 @@ import org.jointheleague.graphical.robot.Robot;
  *    Copyright (c) The League of Amazing Programmers 2013-2021
  *    Level 1
  */
+
 public class Houses {
 	
 	Robot rob = new Robot();
@@ -22,17 +23,22 @@ public class Houses {
 		
 		rob.setSpeed(500);
 		rob.penDown();
+		rob.hide();
 		
 		stars();
 		
 		rob.setPenWidth(2);
 		rob.setX(2);
 		rob.setY(500);
+		
+		rob.setAngle(90);
+		rob.setPenColor(38,77,0);
+		rob.move(40);
 
 		while (rob.getX() < 1000) {
 			this.drawHouse(
 					JOptionPane.showOptionDialog(null, "Do You want a small, medium, or large house?", "House height selector", 0, 0, null, new String[]{"Small", "Medium", "Large"}, "Large"),
-					JOptionPane.showOptionDialog(null, "What Color house do you Want", "House color selector", 0, 0, null, new String[]{"reddish pink", "orange", "blueish purple"}, "white")
+					JOptionPane.showOptionDialog(null, "What Color house do you Want", "House color selector", 0, 0, null, new String[]{"reddish pink", "orange", "blueish purple", "white"}, "white")
 				);
 		}
 
@@ -44,12 +50,12 @@ public class Houses {
 		
 		int heightOfHouse = 250;
 		
-		if (height == 0) {
-			heightOfHouse = 60;
-		} else if (height == 1) {
-			heightOfHouse = 120;
-		} else { 
-			height = 2;
+		switch (height){
+		
+			case 0: heightOfHouse = 60; break;
+			case 1: heightOfHouse = 120; break;
+			case 2: height = 2; break;
+		
 		}
 		
 		switch (color){
@@ -57,10 +63,11 @@ public class Houses {
 			case 0: rob.setPenColor(230, 0, 115); break;
 			case 1: rob.setPenColor(255, 102, 25); break;
 			case 2: rob.setPenColor(100, 100, 200); break;
+			case 3: rob.setPenColor(Color.white); break;
 			default: rob.setPenColor(Color.white);
 			
 		}
-		
+
 		rob.setAngle(0);
 		rob.move(heightOfHouse);
 		
@@ -97,7 +104,7 @@ public class Houses {
 		
 		Random r = new Random();
 		
-		for (int i = 1; i < 25; i++) {
+		for (int i = 0; i < 25; i++) {
 			
 			rob.setX(r.nextInt(900) + 50);
 			rob.setY(r.nextInt(200) + 50);
@@ -110,7 +117,7 @@ public class Houses {
 			
 		}
 		
-		rob.hide();
+
 	}
 	
 }

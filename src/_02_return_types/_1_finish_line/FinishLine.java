@@ -2,6 +2,7 @@ package _02_return_types._1_finish_line;
 
 
 
+import java.awt.Color;
 import java.util.Random;
 
 import javax.swing.JOptionPane;
@@ -16,14 +17,22 @@ public class FinishLine {
 	static int totalDistance;
 	
 	public static void main(String[] args) {
-		//1. Call the drawFinishLine() method
 		
+		rob.hide();
+		
+		//1. Call the drawFinishLine() method
+		drawFinishLine();
 		//2. Call the crazyMove() method to move the robot
 		
+		crazyMove();
 		//3. Call the getTotalDistance() and save what is returned into a variable
 		
 		//4. Call the hasCrossedFinishLine() method and save what is returned into a variable
-		
+		if (hasCrossedFinishLine()) {
+			JOptionPane.showMessageDialog(null, "You Finished. You Went " + totalDistance + " Pixels", "You WON", JOptionPane.INFORMATION_MESSAGE);
+		} else {
+			JOptionPane.showMessageDialog(null, "You Did NOT Finish. You Went " + totalDistance + " Pixels" , "You Did NOT Win", JOptionPane.INFORMATION_MESSAGE);
+		}
 		//5. If the robot has crossed the finish line... 
 			
 			//6. Use a pop up to say the robot finished and how far it went
@@ -39,6 +48,7 @@ public class FinishLine {
 		
 		int numMoves = new Random().nextInt(41)+10;
 		for (int i = 0; i < numMoves; i++ ) { 
+			rob.setRandomPenColor();
 			rob.setAngle(0);
 			if(i%2==0) {
 				rob.turn(45);
@@ -146,11 +156,7 @@ public class FinishLine {
 		rob.turn(180);
 		rob.move(30);
 	}
-	
-	static int getTotalDistance() {
-		return totalDistance;
-	}
-	
+
 	static boolean hasCrossedFinishLine() {
 		if(rob.getY() < 200) {
 			return true;

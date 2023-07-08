@@ -1,4 +1,4 @@
-package _01_methods._4_magic_worms.MagicWorms;
+package _01_methods._4_magic_worms;
 
 import processing.core.PApplet;
 
@@ -40,11 +40,22 @@ public class MagicWorms extends PApplet {
 
     @Override
     public void setup() {
+    	
+    	background( 10, 20, random(10)+20);
 
     }
 
     @Override
-    public void draw() {
+    public void draw() {  	
+    	
+    	makeMagical();
+    	
+    	fill(0, 0, random(50)); 
+    	
+    	for ( int i = 0; i < 300; i++) {
+    		ellipse(getWormX(i),getWormY(i),7,7);
+
+    	}
 
     }
 
@@ -57,7 +68,7 @@ public class MagicWorms extends PApplet {
     float noiseInterval = PI;
 
     void makeMagical() {
-        fill(0, 0, 0, 10);
+        fill(255, 255, 255, 10);
         rect(0, 0, width, height);
         noStroke();
     }
